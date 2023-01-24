@@ -29,22 +29,10 @@ Comment.belongsTo(Post, {
 
 // Comment belongs to a user
 Comment.belongsTo(User, {
-    through: {
-        model: Post,
-        unique: false
-
-    },
-    as: 'comment_user',
     foreignKey: 'user_id'
 });
 
 // User can have many comments
 User.hasMany(Comment, {
-    through: {
-        model: Post,
-        unique: false
-    },
-    as: 'user_comment',
     foreignKey: 'user_id'
-    
 });
