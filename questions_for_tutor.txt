@@ -1,0 +1,12 @@
+Model
+ - WHy do I have two ids in model for user
+ - Is my logic for my associations correct?
+ - Should I include email in the model for user
+
+Controllers
+ - Within Path Router, is email needed?
+ - pathRouter has front end and back end routes, why does it have crud in it and so does the apis post, comments,and users
+ (What is th difference)?
+
+
+What does ... mean in comments of api directory? 
