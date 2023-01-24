@@ -141,13 +141,104 @@ pathRouter.post('/comments', async (req, res) => {
 });
 
 // Update a user
+pathRouter.put('/users/:id', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findById(req.params.id);
+        if (email) {
+            user.email = email;
+        }
+        if (password) {
+            user.password = password;
+        }
+        await user.save();
+        res.status(201).json({ message: 'User has been updated' });
+    } catch (e) {
+        res.status(500).json({ message: 'Something went wrong, try again' });
+    }
+});
+
 
 // Update a post
-    
+pathRouter.put('/posts/:id', async (req, res) => {
+    try {
+        const { title, post_text, user_id } = req.body;
+        const post = await Post.findById(req.params.id);
+        if (title) {
+            post.title = title;
+
+        }
+        if (post_text) {
+            post.post_text = post_text;
+        }
+        if (user_id) {
+            post.user_id = user_id;
+        }
+        await post.save();
+        res.status(201).json({ message: 'Post has been updated' });
+    } catch (e) {
+        res.status(500).json({ message: 'Something went wrong, try again' });
+    }
+});
+
 // Update a comment
 
+pathRouter.put('/comments/:id', async (req, res) => {
+    try {
+        const { comment_text, user_id, post_id } = req.body;    
+        const comment = await Comment.findById(req.params.id);
+        if (comment_text) {
+            comment.comment_text = comment_text;
+        }
+        if (user_id) {
+            comment.user_id = user_id;
+        }
+        if (post_id) {
+            comment.post_id = post_id;
+        }
+        await comment.save();
+        res.status(201).json({ message: 'Comment has been updated' });
+    } catch (e) {
+        res.status(500).json({ message: 'Something went wrong, try again' });
+    }
+});
+
 // Delete a user
+
+pathRouter.delete('/users/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        await user.remove();
+        res.status(201).json({ message: 'User has been deleted' });
+    } catch (e) {
+        res.status(500).json({ message: 'Something went wrong, try again' });
+    }
+});
+
 // Delete a post
+
+pathRouter.delete('/posts/:id', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        await post.remove();
+        res.status(201).json({ message: 'Post has been deleted' });
+    } catch (e) {
+        res.status(500).json({ message: 'Something went wrong, try again' });
+    }
+});
+
+
 // Delete a comment
+
+
+pathRouter.delete('/comments/:id', async (req, res) => {
+    try {
+        const comment = await Comment.findById(req.params.id);
+        await comment.remove();
+        res.status(201).json({ message: 'Comment has been deleted' });
+    } catch (e) {
+        res.status(500).json({ message: 'Something went wrong, try again' });
+    }
+});
 
 module.exports = pathRouter;
