@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
 
-class User extends Model {}
+class User extends Model { }
 
 
 User.init(
@@ -15,7 +15,7 @@ User.init(
         },
         username: {
             type: DataTypes.STRING,
-            allowNull: false 
+            allowNull: false
         },
         password: {
             type: DataTypes.STRING,
@@ -23,7 +23,15 @@ User.init(
             validate: {
                 len: [4]
             }
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isEmail: true
+            }
         }
+
     },
     {
         sequelize,
