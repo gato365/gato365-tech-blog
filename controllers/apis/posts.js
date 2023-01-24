@@ -80,3 +80,5 @@ router.delete('/:id', withAuth, async (req, res) => {
         res.status(400).json(e);
     }
 });
+
+module.exports = router;
