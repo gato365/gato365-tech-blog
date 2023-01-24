@@ -112,11 +112,11 @@ pathRouter.post('/users', [
 // Create a new post
 pathRouter.post('/posts', async (req, res) => {
     try {
-        const { title, content, author } = req.body;
+        const { title, post_text, user_id } = req.body;
         const post = new Post({
             title,
-            content,
-            author
+            post_text,
+            user_id
         });
         await post.save();
         res.status(201).json({ message: 'Post has been created' });
@@ -125,9 +125,25 @@ pathRouter.post('/posts', async (req, res) => {
     }
 });
 // Create a new comment
+pathRouter.post('/comments', async (req, res) => {
+    try {
+        const { comment_text, user_id, post_id } = req.body;
+        const comment = new Comment({
+            comment_text,
+            user_id,
+            post_id
+        });
+        await comment.save();
+        res.status(201).json({ message: 'Comment has been created' });
+    } catch (e) {
+        res.status(500).json({ message: 'Something went wrong, try again' });
+    }
+});
 
 // Update a user
+
 // Update a post
+    
 // Update a comment
 
 // Delete a user
