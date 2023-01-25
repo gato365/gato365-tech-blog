@@ -6,7 +6,14 @@ const optionalAuth = require('../middleware/optionalAuth');
 
 const router = new Router();
 
-// Dashboard page 
+
+// Location 1: 
+// WHEN I click on the homepage option
+// THEN I am taken to the homepage
+// WHEN I click on any other links in the navigation
+// THEN I am prompted to either sign up or sign in
+
+// Get Dashboard page 
 // On Home Page the user can see all posts (dashboard is seen)
 router.get('/dashboard', auth, async (req, res) => {
     const plainUser = req.user.get({ plain: true });
@@ -43,7 +50,7 @@ router.get('/dashboard', auth, async (req, res) => {
     });
 });
 
-// Display Nav  
+// Get Nav  
 router.get('/nav', (req, res) => {
     res.render('nav');
 })

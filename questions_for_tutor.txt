@@ -10,6 +10,8 @@ Controllers
 
 
 What is auth,optionalAuth,&jsonwebtoken?
+// Location 1 (homePage.js): Is this the right place to put this?
+// Would this logic be in the handlebars file?
 
 What does ... mean in comments of api directory? 
 
