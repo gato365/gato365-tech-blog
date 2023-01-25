@@ -9,4 +9,9 @@ Controllers
  (What is th difference)?
 
 
+What is auth,optionalAuth,&jsonwebtoken?
+
 What does ... mean in comments of api directory? 
+
+
+
