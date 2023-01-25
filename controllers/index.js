@@ -1,11 +1,11 @@
 const { Router } = require ("express");
 
-const pathRouter = require('./pathRouter');
+const router = require('./router');
 const apiRouter = require("./apis");
 
 const allRouter = new Router();
 
-allRouter.use('/', pathRouter);
+allRouter.use('/', router);
 allRouter.use('/api', apiRouter);
 
 module.exports = allRouter;
