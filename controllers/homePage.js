@@ -6,9 +6,50 @@ const optionalAuth = require('../middleware/optionalAuth');
 
 const router = new Router();
 
+// Dashboard page 
+// On Home Page the user can see all posts (dashboard is seen)
+router.get('/dashboard', auth, async (req, res) => {
+    const plainUser = req.user.get({ plain: true });
 
-// // GET /homePage
+    const posts = await Post.findAll({
+        where: {
+            author_id: req.user.id,
+        },
+        include: [
+            {
+                model: User,
+                as: 'author',
+                attributes: ['id', 'username'],
+            },
+            {
+                model: Comment,
+                as: 'comments',
+                include: [
+                    {
+                        model: User,
+                        as: 'author',
+                        attributes: ['id', 'username'],
+                    },
+                ],
+            },
+        ]
+    });
 
+    const plainPosts = posts.map(post => post.get({ plain: true }));
+
+    res.render('dashboard', {
+        user: plainUser,
+        posts: plainPosts,
+    });
+});
+
+// Display Nav  
+router.get('/nav', (req, res) => {
+    res.render('nav');
+})
+
+
+// GET /homePage
 router.get('/', auth, async (req, res) => {
     const plainUser = req.user.get({ plain: true });
 
@@ -62,39 +103,4 @@ router.get('/logout', auth, (req, res) => {
 });
 
 
-// Dashboard page
-router.get('/dashboard', auth, async (req, res) => {
-    const plainUser = req.user.get({ plain: true });
-
-    const posts = await Post.findAll({
-        where: {
-            author_id: req.user.id,
-        },
-        include: [
-            {
-                model: User,
-                as: 'author',
-                attributes: ['id', 'username'],
-            },
-            {
-                model: Comment,
-                as: 'comments',
-                include: [
-                    {
-                        model: User,
-                        as: 'author',
-                        attributes: ['id', 'username'],
-                    },
-                ],
-            },
-        ]
-    });
-
-    const plainPosts = posts.map(post => post.get({ plain: true }));
-
-    res.render('dashboard', {
-        user: plainUser,
-        posts: plainPosts,
-    });
-});
-
+module.exports = router;
