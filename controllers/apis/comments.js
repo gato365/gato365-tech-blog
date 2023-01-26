@@ -3,27 +3,7 @@ const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
-// Get all comments
-router.get('/', async (req, res) => {
-    try {
-        const comments = await Comment.find();
-        res.json(comments);
-    } catch (e) {
-        res.status(500).json({ message: 'Something went wrong, try again' });
-    }
-});
-
-// Get one comment
-router.get('/:id', async (req, res) => {
-    try {
-        const comment = await Comment.findById(req.params.id);
-        res.json(comment);
-    } catch (e) {
-        res.status(500).json({ message: 'Something went wrong, try again' });
-    }
-});
-
-// Create a new comment
+// Create a new comment (This is saving the comment to the database)
 router.post('/', withAuth, async (req, res) => {
     try {
         const comment = await Comment.create({

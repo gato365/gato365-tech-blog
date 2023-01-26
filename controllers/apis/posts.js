@@ -3,39 +3,11 @@ const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
-// GET /posts
-router.get('/', async (req, res) => {
-    try {
-        const posts = await Post.findAll();
-        res.json(posts);
-    } catch (e) {
-        res.status(500).json({ message: 'Something went wrong, try again' });
-    }
-});
-
-// GET /posts/:id
-router.get('/:id', async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.id);
-        res.json(post);
-    } catch (e) {
-        res.status(500).json({ message: 'Something went wrong, try again' });
-    }
-});
 
 
-// GET /posts/:id/comments
-router.get('/:id/comments', async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.id);
-        const comments = await post.getComments();
-        res.json(comments);
-    } catch (e) {
-        res.status(500).json({ message: 'Something went wrong, try again' });
-    }
-});
 
-// POST /posts
+
+// POST /posts (THis is saving the post to the database)
 router.post('/', withAuth, async (req, res) => {
     try {
         const post = await Post.create({

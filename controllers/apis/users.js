@@ -3,43 +3,47 @@ const { User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
-// GET /users
-router.get('/', async (req, res) => {
-    try {
-        const users = await User.findAll();
-        res.json(users);
-    } catch (e) {
-        res.status(500).json({ message: 'Something went wrong, try again' });
-    }
-});
 
 
-// GET /users/:id
-
-router.get('/:id', async (req, res) => {
-try{    
-    const user = await User.findById(req.params.id);
-    res.json(user);
-} catch (e) {
-    res.status(500).json({ message: 'Something went wrong, try again' });
-}
-});
 
 
 // POST /users
 router.post('/', async (req, res) => {
     try {
-        const user = await User.create({
-            ...req.body,
-            user_id: req.session.user_id,
+
+        const user = await User.findOne({
+
+            where: {
+                email: req.body.email,
+            },
+
         });
-        res.json(user);
+        // validate user
+        if (!user) {
+            res.status(400).json({ message: 'Incorrect email, please try again' });
+            return;
+        }
+
+        const checkPassword = user.checkPassword(req.body.password);
+        if(!checkPassword) {
+            res.status(400).json({ message: 'Incorrect password, please try again' });
+            return;
+        }
+
+        req.session.save(() => {
+            req.session.user_id = user.id;
+            req.session.email = user.email;
+            req.session.logged_in = true;
+        });
+
+        res.json({ user, message: 'You are now logged in!' });
+
     } catch (e) {
         res.status(400).json(e);
     }
 });
 
-// PUT /users/:id
+// PUT /users/:id (NEEDS TO BE FIXED)
 router.put('/:id', withAuth, async (req, res) => {
     try {
         const user = await User.update(
@@ -59,7 +63,7 @@ router.put('/:id', withAuth, async (req, res) => {
     }
 });
 
-// DELETE /users/:id
+// DELETE /users/:id (NEEDS TO BE FIXED)
 router.delete('/:id', withAuth, async (req, res) => {
     try {
         const user = await User.destroy({

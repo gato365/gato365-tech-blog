@@ -50,15 +50,11 @@ router.get('/dashboard', auth, async (req, res) => {
     });
 });
 
-// Get Nav  
-router.get('/nav', (req, res) => {
-    res.render('nav');
-})
 
 
-// GET /homePage
+// GET /homePage (landing page)
 router.get('/', auth, async (req, res) => {
-    const plainUser = req.user.get({ plain: true });
+   
 
     const posts = await Post.findAll({
         include: [
@@ -84,29 +80,32 @@ router.get('/', auth, async (req, res) => {
     const plainPosts = posts.map(post => post.get({ plain: true }));
 
     res.render('homePage', {
-        user: plainUser,
-        posts: plainPosts,
+        
+        posts: plainPosts
     });
-
+// Login, Dashboard, Home Page
 });
     
 
 // Log in page
 router.get('/login', optionalAuth, (req, res) => {
     res.render('login');
+    // Login, Dashboard, Home Page
 });
 
 // Sign up page
 router.get('/signup', optionalAuth, (req, res) => {
     res.render('signup');
+    // Login, Dashboard, Home Page
 });
 
 
 // Log out
-router.get('/logout', auth, (req, res) => {
+router.get('/logout', optionalAuth, (req, res) => {
     req.session.destroy(() => {
         res.redirect('/login');
     });
+    // Login, Dashboard, Home Page
 });
 
 
