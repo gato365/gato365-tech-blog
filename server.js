@@ -11,12 +11,43 @@ const sequelize = require("./config/connection");
 const mainRouter = require("./controllers");
 // Import the helpers
 const homePageRoutes = require("./controllers/homePageRoutes");
-const helpers = require("./utils/helpers");
-
-
-
-const port = process.env.PORT || 3001;
+// const helpers = require("./utils/helpers");
 
 
 // Create a new express app instance
 const app = express();
+
+// Set the port
+const port = process.env.PORT || 3001;
+
+
+
+
+// Set up the Express app to handle data parsing
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.static("public"));
+
+
+// Set up Handlebars.js engine with custom helpers
+const hbs = expressHandlebars.create({ helpers });
+
+
+
+
+
+// Use the main router
+app.engine("handlebars", handlebars.engine); 
+app.set('view engine', 'handlebars');
+app.use(mainRouter);
+
+
+// Sync sequelize models to the database, then turn on the server
+sequelize.sync().then(() => {
+    app.listen(PORT, () => {
+        console.log("Listening on http://localhost:" + PORT)
+    });
+});
+
