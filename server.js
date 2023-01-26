@@ -9,7 +9,11 @@ const cookieParser = require("cookie-parser");
 const sequelize = require("./config/connection");
 // Import the routes
 const mainRouter = require("./controllers");
-const pathRouter = require("./controllers/homePageRoutes");
+// Import the helpers
+const homePageRoutes = require("./controllers/homePageRoutes");
+const helpers = require("./utils/helpers");
+
+
 
 const port = process.env.PORT || 3001;
 
