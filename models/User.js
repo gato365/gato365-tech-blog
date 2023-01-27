@@ -5,6 +5,7 @@ const sequelize = require('../config/connection.js');
 
 
 
+
 // Check password
 class User extends Model {
     checkPassword(loginPw) {
@@ -12,10 +13,7 @@ class User extends Model {
     }
   }
   
-
-
-
-
+// Define table columns and configuration
 User.init(
     {
         id: {
@@ -46,21 +44,22 @@ User.init(
 
     },
 
-    {
+    // {
 
-        hooks: {
-            // set up beforeCreate password, push hash version of password then push password to database
-            beforeCreate: async (newUserData) => {
-                newUserData.password = await bcrypt.hash(newUserData.password, 10);
-                return newUserData;
-            },
+    //     // set up beforeCreate password, push hash version of password then push password to database
+    //     hooks: {
+    //         // set up beforeCreate password, push hash version of password then push password to database
+    //         beforeCreate: async (newUserData) => {
+    //             newUserData.password = await bcrypt.hash(newUserData.password, 10);
+    //             return newUserData;
+    //         },
 
-            beforeUpdate: async (updatedUserData) => {
-                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-                return updatedUserData;
-            },
-        },
-    },
+    //         beforeUpdate: async (updatedUserData) => {
+    //             updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+    //             return updatedUserData;
+    //         },
+    //     },
+    // },
 
     {
         sequelize,
