@@ -6,25 +6,25 @@
        "post_id": 1
     },
     {
-        "id": 1,
+        "id": 2,
         "comment_text": "Add me on facebook",
         "user_id":2,
         "post_id": 1
      },
      {
-        "id": 1,
+        "id": 3,
         "comment_text": "you are my best friend",
         "user_id": 3,
         "post_id": 2
      },
      {
-        "id": 1,
+        "id": 4,
         "comment_text": "stay away from me at all costs",
         "user_id":3,
         "post_id": 2
      },
      {
-        "id": 1,
+        "id": 5,
         "comment_text": "Get a life",
         "user_id":2,
         "post_id": 2
