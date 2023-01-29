@@ -1,5 +1,27 @@
+  <div class="nav">
+    <a href="/">Home</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/login">Login</a>
+    <a href="/logout">Logout</a>
+  </div>
+
+
 <h1>Title Name {{title}}  </h1>
 <a href="/"> Back Home</a>
+  <form id = "sign-up" action="signup.php" method="post">
+  <h2> Login </h2>
+    <label for="username">Username:</label>
+    <br />
+    <input type="text" name="username" id="username" />
+    <br />
 
-<a href="/signup"> sign up</a>
+    <label for="password">Password:</label>
+    <br />
+    <input type="password" name="password" id="password" />
+    <br />
+    <input type="submit" value="Login!" />
+    <br />
+<a href="/signup"> Sign Up</a>
+  </form>
+
 
