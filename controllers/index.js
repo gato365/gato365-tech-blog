@@ -16,13 +16,6 @@ allRouter.get('/', (req, res) => {
     });
 });
 
-allRouter.get('/profile', (req, res) => {
-    res.render("profile", {
-        title: "Truck Tracker",
-
-    });
-
-});
 
 allRouter.get('/login', (req, res) => {
     res.render("login", {
@@ -40,10 +33,15 @@ allRouter.get('/signup', (req, res) => {
 
 allRouter.get('/dashboard', (req, res) => {
     res.render("dashboard", {
-        title: "HERE IS THE DASHBOARD",
+        title: "HERE IS THE DASHBOARD PAGE",
     });
 });
 
+allRouter.get('/logout', (req, res) => {
+    res.render("logout", {
+        title: "HERE IS THE LOGOUT PAGE",
+    });
+});
 
 
 module.exports = allRouter;
