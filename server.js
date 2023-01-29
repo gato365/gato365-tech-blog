@@ -25,8 +25,8 @@ app.use('/', mainRouter);
 const PORT = process.env.PORT || 3001;
 
 
-app.engine("handlebars_engine", hbs.engine);
-app.set("view engine", "handlebars_engine");
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
 
 
 

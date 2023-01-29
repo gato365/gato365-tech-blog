@@ -9,7 +9,7 @@ const allRouter = new Router();
 // allRouter.use('/api', apiRouter);
 
 allRouter.get('/', (req, res) => {
-    res.render("main");
+    res.render("home");
 });
 
 module.exports = allRouter;
