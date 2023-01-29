@@ -47,7 +47,22 @@
       color: #4b4b4b;
       line-height: 1.5rem;
     }
+
+    #sign-up {
+     /* display: none;*/
+    }
+
+    #login-up {
+      /*  display: none;
+     Display when Login is clicked */
+
+    }
+
+
+
+
   </style>
+
 </head>
 
 
@@ -61,22 +76,46 @@
   </div>
   <h1>Tech Blog</h1>
 
-  <!-- Post -->
-  <div id="post">
-    <div id="post-header" style="border: none;">
-      <p style="color: white; font-size:30px">Title of Post</p>
-      <p style="color: white; font-size:30px">Posted by Jane Doe on June 15th, 2020</p>
-    </div>
 
-    <div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vestibulum euismod ornare. Donec
-        pellentesque
-        iaculis libero ac aliquam. Nullam sed odio nibh. Nulla facilisi. Praesent auctor augue at convallis scelerisque.
-        Aliquam erat volutpat. Praesent vel quam sapien. Etiam et nisi velit. Sed leo neque, varius sed eros eget,
-        rhoncus
-        condimentum magna. Sed et posuere felis, sed sodales tortor. </p>
-    </div>
-  </div>
+  
+
+  <form id = "sign-up" action="signup.php" method="post">
+  <h3> Login </h3>
+    <label for="username">Username:</label>
+    <br />
+    <input type="text" name="username" id="username" />
+    <br />
+
+    <label for="password">Password:</label>
+    <br />
+    <input type="password" name="password" id="password" />
+    <br />
+    <input type="submit" value="Login!" />
+    <br />
+    <a href="signup.php">Sign up</a>
+  </form>
+
+
+  <form id = "login-up" action="signup.php" method="post">
+    <h3>Sign Up</h3>
+    <label for="username">Username:</label>
+    <br />
+    <input type="text" name="username" id="username" />
+    <br />
+
+    <label for="password">Password:</label>
+    <br />
+    <input type="password" name="password" id="password" />
+    <br />
+    <input type="submit" value="Sign Up!" />
+    <br />
+    <a href="login.php">Login!</a>
+  </form>
+  
+
+ 
+
 </body>
 
 </html>
+
