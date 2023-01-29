@@ -26,11 +26,23 @@ allRouter.get('/profile', (req, res) => {
 
 allRouter.get('/login', (req, res) => {
     res.render("login", {
-        title: "Truck Tracker",
+        title: "HERE IS THE LOGIN PAGE",
 
     });
 });
 
+allRouter.get('/signup', (req, res) => {
+    res.render("signup", {
+        title: "HERE IS THE SIGNUP PAGE",
+
+    });
+});
+
+allRouter.get('/dashboard', (req, res) => {
+    res.render("dashboard", {
+        title: "HERE IS THE DASHBOARD",
+    });
+});
 
 
 
