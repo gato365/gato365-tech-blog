@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 // Express Handlebars is a templating engine that allows you to use handlebars templates with Express.
-const expressHandlebars = require("express-handlebars");
+const handlebars = require("express-handlebars");
 // cookie-parser is a middleware that parses cookies attached to the client request object.
 // const cookieParser = require("cookie-parser");
 
@@ -16,9 +16,17 @@ const mainRouter = require("./controllers");
 
 // Create a new express app instance
 const app = express();
+// Set up Handlebars.js engine with custom helpers
+const hbs = handlebars.create();
 
+
+app.use('/', mainRouter);
 // Set the port
 const PORT = process.env.PORT || 3001;
+
+
+app.engine("handlebars_engine", hbs.engine);
+app.set("view engine", "handlebars_engine");
 
 
 
@@ -31,8 +39,8 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-// Set up Handlebars.js engine with custom helpers
-// const hbs = expressHandlebars.create({ helpers });
+
+
 
 
 
