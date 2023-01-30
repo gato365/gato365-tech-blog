@@ -87,26 +87,26 @@ router.get('/', auth, async (req, res) => {
 });
     
 
-// Log in page
-router.get('/login', optionalAuth, (req, res) => {
-    res.render('login');
-    // Login, Dashboard, Home Page
-});
+// // Log in page
+// router.get('/login', optionalAuth, (req, res) => {
+//     res.render('login');
+//     // Login, Dashboard, Home Page
+// });
 
-// Sign up page
-router.get('/signup', optionalAuth, (req, res) => {
-    res.render('signup');
-    // Login, Dashboard, Home Page
-});
+// // Sign up page
+// router.get('/signup', optionalAuth, (req, res) => {
+//     res.render('signup');
+//     // Login, Dashboard, Home Page
+// });
 
 
-// Log out
-router.get('/logout', optionalAuth, (req, res) => {
-    req.session.destroy(() => {
-        res.redirect('/login');
-    });
-    // Login, Dashboard, Home Page
-});
+// // Log out
+// router.get('/logout', optionalAuth, (req, res) => {
+//     req.session.destroy(() => {
+//         res.redirect('/login');
+//     });
+//     // Login, Dashboard, Home Page
+// });
 
 
 module.exports = router;
