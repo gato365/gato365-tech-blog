@@ -31,31 +31,6 @@ router.get('/posts', async (req, res) => {
     
 
 });
-// Get all posts
-router.get('/posts', async (req, res) => {
-    const posts = await Post.findAll({
-        include: [
-            {
-                model: User,
-                as: 'author',
-                attributes: ['id', 'username'],
-            },
-            {
-                model: Comment,
-                as: 'comments',
-                include: [
-                    {
-                        model: User,
-                        as: 'author',
-                        attributes: ['id', 'username'],
-                    },
-                ],
-            },
-        ]
-    });
-    
-
-});
 
 // Get single post
 router.get('/posts/:id', async (req, res) => {

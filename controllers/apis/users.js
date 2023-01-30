@@ -8,7 +8,7 @@ const withAuth = require('../../utils/auth');
 
 
 // POST /users
-router.post('/', async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
 
         const user = await User.findOne({
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
         }
 
         const checkPassword = user.checkPassword(req.body.password);
-        if(!checkPassword) {
+        if (!checkPassword) {
             res.status(400).json({ message: 'Incorrect password, please try again' });
             return;
         }
