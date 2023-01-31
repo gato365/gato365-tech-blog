@@ -1,7 +1,7 @@
 const { Router } = require("express");
 
 const router = require('./router');
-const apiRouter = require("./apis");
+const apiRouter = require("./api");
 
 const allRouter = new Router();
 
@@ -32,6 +32,7 @@ allRouter.get('/signup', (req, res) => {
 
     });
 });
+
 // Dashboard
 allRouter.get('/dashboard', (req, res) => {
     res.render("dashboard", {
