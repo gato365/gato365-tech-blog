@@ -12,21 +12,24 @@
 
 <p> My address {{address}}</p>
 
-<ul class="people_list">
-  {{#each posts}}
-  <li>{{title}}</li>
-  {{/each}}
-</ul>
 
-<div style="border: solid black 1px ;">
+  {{#each posts}}
+  <div style="border: solid black 1px ;">
   <div style="background-color: aqua; display:flex; justify-content:space-between;">
-    <h3>Title </h3>
-    <h3>User and Date </h3>
+    <h3>{{title}} </h3>
+    <h3>User Name: {{username}} Date: {{created_at}} </h3>
   </div>
   <div>
-    <p>Post Content</p>
+    <p>{{post_text}}</p>
   </div>
 </div>
+  {{/each}}
+  
+
+
+
+
+
 
 {{!--
 {{title}}
