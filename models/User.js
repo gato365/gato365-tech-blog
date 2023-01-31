@@ -16,12 +16,7 @@ class User extends Model {
 // Define table columns and configuration
 User.init(
     {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-          },      
+    
 
         username: {
             type: DataTypes.STRING,
