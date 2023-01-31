@@ -12,16 +12,14 @@ router.get('/posts', async (req, res) => {
         include: [
             {
                 model: User,
-                as: 'author',
+
                 attributes: ['id', 'username'],
             },
             {
                 model: Comment,
-                as: 'comments',
                 include: [
                     {
                         model: User,
-                        as: 'author',
                         attributes: ['id', 'username'],
                     },
                 ],
@@ -59,7 +57,7 @@ router.get('/posts/:id', async (req, res) => {
 });
 
 // Create a post
-router.post('/posts', auth, async (req, res) => {
+router.post('/posts', async (req, res) => {
     const post = await Post.create({
         title: req.body.title,
         content: req.body.content,
@@ -70,7 +68,7 @@ router.post('/posts', auth, async (req, res) => {
 });
 
 // Update a post
-router.put('/posts/:id', auth, async (req, res) => {
+router.put('/posts/:id', async (req, res) => {
     const post = await Post.findByPk(req.params.id);
     if (post.author_id === req.user.id) {
         await post.update({
@@ -82,7 +80,7 @@ router.put('/posts/:id', auth, async (req, res) => {
 
 
 // Delete a post
-router.delete('/posts/:id', auth, async (req, res) => {
+router.delete('/posts/:id', async (req, res) => {
     const post = await Post.findByPk(req.params.id);
     if (post.author_id === req.user.id) {
         await post.destroy();

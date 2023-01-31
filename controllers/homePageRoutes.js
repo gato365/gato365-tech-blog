@@ -1,6 +1,6 @@
 const { Router } = require("express");
 
-const router = require('./router');
+const { User, Post, Comment } = require('../models');
 const apiRouter = require("./api");
 
 const allRouter = new Router();
@@ -9,19 +9,39 @@ const allRouter = new Router();
 // allRouter.use('/api', apiRouter);
 
 // Home
-allRouter.get('/', (req, res) => {
-    res.render("home", {
-        name: "Eman",
-        address: "2916 1st Ave S, Seattle, WA 98134",
+allRouter.get('/', async (req, res) => {
+   let posts = await Post.findAll({
+        include: [
+            {
+                model: User,
+                attributes: ['id', 'username'],
+            },
+            {
+                model: Comment,
+                include: [
+                    {
+                        model: User,
+                        attributes: ['id', 'username'],
+                    },
+                ],
+            },
+        ]
 
     });
+
+
+    posts = posts.map((post) => post.get({ plain: true }));
+
+    res.render("home", {
+        posts
+    });
+
 });
 
 // Login
 allRouter.get('/login', (req, res) => {
     res.render("login", {
         title: "HERE IS THE LOGIN PAGE",
-
     });
 });
 
@@ -33,12 +53,7 @@ allRouter.get('/signup', (req, res) => {
     });
 });
 
-// Dashboard
-allRouter.get('/dashboard', (req, res) => {
-    res.render("dashboard", {
-        title: "HERE IS THE DASHBOARD PAGE",
-    });
-});
+
 // Logout
 allRouter.get('/logout', (req, res) => {
     res.render("logout", {
