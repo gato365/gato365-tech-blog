@@ -28,23 +28,12 @@ const PORT = process.env.PORT || 3001;
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
-
-
-
 // Set up the Express app to handle data parsing
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // app.use(cookieParser());
 app.use("/user", mainRouter);
-
-
-
-
-
-
-
-
 
 
 // Use the main router
