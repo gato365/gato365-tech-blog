@@ -62,4 +62,13 @@ allRouter.get('/logout', (req, res) => {
 });
 
 
+// DELETE WHEN LOGGED IN IS WORKING
+
+allRouter.get('/dashboard', (req, res) => {
+    res.render("dashboard", {
+        title: "HERE IS THE DASHBOARD PAGE",
+    });
+});
+
+
 module.exports = allRouter;
